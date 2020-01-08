@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8dda7384fa9ef4e83e39e726c99db1, type: 3}
+  m_Name: Skill_0
+  m_EditorClassIdentifier: 
+  name: "\uD30C\uC774\uC5B4 \uBCFC"
+  skillType: 0
+  num: 1
+  mp: 20
+  cooldown: 4
+  damage: 30
+  duration: 2
+  skillPrefab: {fileID: 6303840854966208609, guid: ed4a4e767d58cd8469d62173fca95c97,
+    type: 3}
+  skillRangePrefab: {fileID: 7884669626102194661, guid: 807f9a6d7e5856e41bc22740b41a78cb,
+    type: 3}
+  isTarget: 0

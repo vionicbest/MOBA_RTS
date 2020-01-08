@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New HeroData", menuName = "HeroData", order = 2)]
+[CreateAssetMenu(fileName = "New HeroData", menuName = "create new hero data", order = 2)]
 
 public class HeroStat : ScriptableObject
 {
