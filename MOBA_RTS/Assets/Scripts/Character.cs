@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     float speed;
     Sprite sprite, spriteLeft, spriteRight, hpBar, mpBar;
-
+    public Animator anime; 
     HeroStat stat;
     float hp, mhp, mp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange;
     List<int> skills;
@@ -62,7 +62,7 @@ public class Character : MonoBehaviour
 
     public void changeSprite(CharacterDirection direction)
     {
-        switch(direction)
+        /*switch(direction)
         {
             case CharacterDirection.Center:
                 GetComponent<SpriteRenderer>().sprite = sprite;
@@ -73,7 +73,7 @@ public class Character : MonoBehaviour
             case CharacterDirection.Right:
                 GetComponent<SpriteRenderer>().sprite = spriteRight;
                 break;
-        }
+        }*/
     }
     public void showSkillRange(int skill)
     {
@@ -103,5 +103,12 @@ public class Character : MonoBehaviour
                 mp -= currentSkill.getStats()[0];
                 break;
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log(finalSpeed());
+        anime.SetBool("isMoving", Controller.isMoving == true);
+        anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
     }
 }

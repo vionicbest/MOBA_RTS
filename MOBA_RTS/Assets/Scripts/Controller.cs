@@ -10,19 +10,22 @@ public class Controller : MonoBehaviour
 
     Vector3 nextMovePosition;
     Character hero;
-    Character.CharacterDirection direction;
+    public static Character.CharacterDirection direction;
+    public static bool isMoving;
     bool isSkillReady;
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         hero = GameObject.Find("Character").GetComponent<Character>();
         direction = Character.CharacterDirection.Right;
+        isMoving = false;
         isSkillReady = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        isMoving = hero.transform.position != nextMovePosition;
         //스킬 관련된 업데이트
         if (Input.GetKey(KeyCode.Q) && isSkillReady)
         {
