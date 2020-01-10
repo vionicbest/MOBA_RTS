@@ -65,21 +65,6 @@ public class Character : MonoBehaviour
         return speed;
     }
 
-    public void changeSprite(CharacterDirection direction)
-    {
-        /*switch(direction)
-        {
-            case CharacterDirection.Center:
-                GetComponent<SpriteRenderer>().sprite = sprite;
-                break;
-            case CharacterDirection.Left:
-                GetComponent<SpriteRenderer>().sprite = spriteLeft;
-                break;
-            case CharacterDirection.Right:
-                GetComponent<SpriteRenderer>().sprite = spriteRight;
-                break;
-        }*/
-    }
     public bool isSkillValid(int skill) {
         if (cooldown[skill] > 0 || mp < skillStats[skill].getStats()[0]) {
             return false;
@@ -122,7 +107,9 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(cooldown[0]);
+        if (mp < mmp) {
+            mp += mpRegen;
+        }
         for (int i=0; i<4; i++) {
             if (cooldown[i] > 0) {
                 cooldown[i]--;

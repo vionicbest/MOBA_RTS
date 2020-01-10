@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
             hero.showSkillRange(0);
             isSkillReady = true;
         }
-        if (Input.GetKeyUp (KeyCode.Q)) {
+        if (Input.GetKeyUp (KeyCode.Q) && isSkillReady) {
             hero.deleteSkillRange();
             isSkillReady = false;
         }
