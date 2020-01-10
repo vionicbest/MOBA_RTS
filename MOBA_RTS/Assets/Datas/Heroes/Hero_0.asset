@@ -25,3 +25,4 @@ MonoBehaviour:
   attackDelay: 60
   skills: 00000000010000000200000003000000
   attackType: 1
+  unit: {fileID: 21300000, guid: 0e59bcd503932734db91b0ad9c97951b, type: 3}

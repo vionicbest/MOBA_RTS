@@ -9,6 +9,8 @@ public class Controller : MonoBehaviour
     float scrollSpeed, maxZoom, minZoom;
     [SerializeField]
     bool debug;
+    [SerializeField]
+    Transform unit;
     Vector3 nextMovePosition;
     Character hero;
     public static Character.CharacterDirection direction;
@@ -78,6 +80,9 @@ public class Controller : MonoBehaviour
         // 디버그 용도
         if (debug) {
             if (Input.GetKey(KeyCode.Z)) {
+                unit.gameObject.GetComponent<Character>().init("0");
+                var mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var spawnedUnit = Instantiate(unit, new Vector3(mp.x, mp.y, -1), new Quaternion(0, 0, 0, 0));
             }
         }
     }

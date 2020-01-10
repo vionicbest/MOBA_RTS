@@ -20,6 +20,8 @@ public class UnitStat : ScriptableObject
     private List<int> skills;
     [SerializeField]
     private AttackType attackType;
+    [SerializeField]
+    private Sprite unit;
 
     public string getName()
     {
@@ -33,5 +35,8 @@ public class UnitStat : ScriptableObject
     public List<int> getSkills()
     {
         return skills;
+    }
+    public Sprite getSprite() {
+        return unit;
     }
 }

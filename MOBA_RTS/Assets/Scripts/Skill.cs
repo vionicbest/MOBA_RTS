@@ -12,8 +12,6 @@ public class Skill : MonoBehaviour
         damage = stats[2];
         duration = stats[3];
         speed = stats[4];
-        //GetComponent<Rigidbody>().velocity = transform.forward * speed;
-        Debug.Log("asdf");
         normalizedSpeed = (transform.rotation * new Vector3(1, 0, 0)).normalized * speed;
     }
 
@@ -23,5 +21,8 @@ public class Skill : MonoBehaviour
             Destroy(this.gameObject);
         }
         duration--;
+    }
+    public float GetDamage() {
+        return damage;
     }
 }

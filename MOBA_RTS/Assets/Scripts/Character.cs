@@ -40,11 +40,17 @@ public class Character : MonoBehaviour
         atkRange = stats[6];
         sightRange = stats[7];
     }
+    void setSprite(Sprite sprite) {
+        GetComponent<SpriteRenderer>().sprite = sprite;
+    }
     void setSkills(List<int> skills)
     {
         for (int i=0; i<4; i++) {
             skillStats[i] = (SkillStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Skills/Skill_" + skills[i] + ".asset", typeof(SkillStat));
         }
+    }
+    public void init(string code) {
+        characterCode = code;
     }
     private void Start()
     {
@@ -57,6 +63,7 @@ public class Character : MonoBehaviour
             stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Units/Unit_" + characterCode + ".asset", typeof(UnitStat));
         }
         setStats(stat.getStats());
+        setSprite(stat.getSprite());
     }
 
     public float finalSpeed()
@@ -72,7 +79,6 @@ public class Character : MonoBehaviour
     }
     public void showSkillRange(int skill)
     {
-        Debug.Log(skill);
         currentSkill = skillStats[skill];
         Transform transform = GetComponent<Transform>();
         switch(currentSkill.getSkillType())
@@ -106,14 +112,15 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+        if(isHero) {
+            for (int i=0; i<4; i++) {
+                if (cooldown[i] > 0) {
+                    cooldown[i]--;
+                }
+            }
+        }
         if (mp < mmp) {
             mp += mpRegen;
-        }
-        for (int i=0; i<4; i++) {
-            if (cooldown[i] > 0) {
-                cooldown[i]--;
-            }
-            
         }
         anime.SetBool("isMoving", Controller.isMoving == true);
         anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
@@ -127,6 +134,19 @@ public class Character : MonoBehaviour
                 return mp/mmp;
             default:
                 return 1;
+        }
+    }
+    void OnTriggerEnter(Collider col) {
+        float damage = col.gameObject.GetComponent<Skill>().GetDamage();
+        getDamage(damage);
+        Destroy(col.gameObject);
+        Debug.Log(hp);
+    }
+
+    void getDamage(float damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            Destroy(this.gameObject);
         }
     }
 }
