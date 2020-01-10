@@ -27,7 +27,7 @@ public class Controller : MonoBehaviour
     {
         isMoving = hero.transform.position != nextMovePosition;
         //스킬 관련된 업데이트
-        if (Input.GetKey (KeyCode.Q) && !isSkillReady)
+        if (Input.GetKey (KeyCode.Q) && !isSkillReady && hero.isSkillValid(0))
         {
             hero.showSkillRange(0);
             isSkillReady = true;

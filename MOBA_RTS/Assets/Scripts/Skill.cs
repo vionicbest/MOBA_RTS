@@ -5,6 +5,7 @@ using UnityEngine;
 public class Skill : MonoBehaviour
 {
     float damage, duration, speed;
+    Vector3 normalizedSpeed;
     public void init(Quaternion direction, SkillStat stat) {
         transform.rotation = direction;
         List<float> stats = stat.getStats();
@@ -13,13 +14,11 @@ public class Skill : MonoBehaviour
         speed = stats[4];
         //GetComponent<Rigidbody>().velocity = transform.forward * speed;
         Debug.Log("asdf");
+        normalizedSpeed = (transform.rotation * new Vector3(1, 0, 0)).normalized * speed;
     }
 
     void Update() {
-        Debug.Log(transform.rotation);
-        Vector3 targetDirection = transform.rotation * new Vector3(1, 0, 0);
-        Debug.Log(targetDirection);
-        transform.position += targetDirection.normalized * speed;
+        transform.position += normalizedSpeed;
         if (duration <= 0) {
             Destroy(this.gameObject);
         }

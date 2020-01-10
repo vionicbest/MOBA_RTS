@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     SkillStat currentSkill;
     int currentSkillNum;
     Transform skillRange;
+    List<float> cooldown;
 
     void setStats(List<float> stats)
     {
@@ -53,6 +54,8 @@ public class Character : MonoBehaviour
         setStats(stat.getStats());
         setSprites(stat.getSprites());
         setSkills(stat.getSkills());
+
+        cooldown = new List<float> {0.0f, 0.0f, 0.0f, 0.0f};
     }
 
     public float finalSpeed()
@@ -74,6 +77,12 @@ public class Character : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = spriteRight;
                 break;
         }*/
+    }
+    public bool isSkillValid(int skill) {
+        if (cooldown[skill] > 0) {
+            return false;
+        }
+        return true;
     }
     public void showSkillRange(int skill)
     {
@@ -101,8 +110,9 @@ public class Character : MonoBehaviour
             case SkillStat.SkillType.Projectile:
                 var projectile = Instantiate(currentSkill.getPrefabs()[0], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
                 projectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill);
-                currentSkillNum = -1;
                 mp -= currentSkill.getStats()[0];
+                cooldown[currentSkillNum] += currentSkill.getStats()[1];
+                currentSkillNum = -1;
                 break;
         }
         deleteSkillRange();
@@ -110,6 +120,13 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(cooldown[0]);
+        for (int i=0; i<4; i++) {
+            if (cooldown[i] > 0) {
+                cooldown[i]--;
+            }
+            
+        }
         anime.SetBool("isMoving", Controller.isMoving == true);
         anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
     }
