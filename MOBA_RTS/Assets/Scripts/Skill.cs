@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    float damage, duration, speed;
+    public void init(Quaternion direction, SkillStat stat) {
+        transform.rotation = direction;
+        List<float> stats = stat.getStats();
+        damage = stats[2];
+        duration = stats[3];
+        speed = stats[4];
+        //GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        Debug.Log("asdf");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        Debug.Log(transform.rotation);
+        Vector3 targetDirection = transform.rotation * new Vector3(1, 0, 0);
+        Debug.Log(targetDirection);
+        transform.position += targetDirection.normalized * speed;
+        if (duration <= 0) {
+            Destroy(this.gameObject);
+        }
+        duration--;
     }
 }

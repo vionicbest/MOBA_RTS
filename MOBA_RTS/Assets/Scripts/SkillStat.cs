@@ -17,7 +17,7 @@ public class SkillStat : ScriptableObject
     [SerializeField]
     private int num;
     [SerializeField]
-    private float mp, cooldown, damage, duration;
+    private float mp, cooldown, damage, duration, speed;
     [SerializeField]
     private Transform skillPrefab, skillRangePrefab;
     [SerializeField]
@@ -29,7 +29,7 @@ public class SkillStat : ScriptableObject
     }
     public List<float> getStats()
     {
-        List<float> stats = new List<float> {mp, cooldown, damage, duration};
+        List<float> stats = new List<float> {mp, cooldown, damage, duration, speed};
         return stats;
     }
     public List<Transform> getPrefabs()

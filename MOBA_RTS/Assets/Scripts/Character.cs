@@ -83,31 +83,33 @@ public class Character : MonoBehaviour
         switch(currentSkill.getSkillType())
         {
             case SkillStat.SkillType.Projectile:
-                Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                skillRange.GetComponent<SkillRange>().init(this);
                 currentSkillNum = skill;
                 break;
         }
     }
     public void deleteSkillRange()
     {
-        Destroy(GameObject.Find("skill_"+skills[currentSkillNum]+"_range(Clone)"));
+        Destroy(skillRange.gameObject);
+        skillRange = null;
     }
     public void activateSkill()
     {
-        deleteSkillRange();
         switch (currentSkill.getSkillType())
         {
             case SkillStat.SkillType.Projectile:
-                Instantiate(currentSkill.getPrefabs()[0], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                var projectile = Instantiate(currentSkill.getPrefabs()[0], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                projectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill);
                 currentSkillNum = -1;
                 mp -= currentSkill.getStats()[0];
                 break;
         }
+        deleteSkillRange();
     }
 
     private void Update()
     {
-        Debug.Log(finalSpeed());
         anime.SetBool("isMoving", Controller.isMoving == true);
         anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
     }

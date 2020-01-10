@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7884669626102194661}
   - component: {fileID: 6615692266689443609}
+  - component: {fileID: -2653693419549912278}
   m_Layer: 0
   m_Name: skill_0_range
   m_TagString: Untagged
@@ -80,3 +81,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &-2653693419549912278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177722800130832392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9c83d350e8bc34c9f25d472bbab84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
