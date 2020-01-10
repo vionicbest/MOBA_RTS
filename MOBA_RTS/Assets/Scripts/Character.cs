@@ -19,11 +19,11 @@ public class Character : MonoBehaviour
     public Animator anime; 
     HeroStat stat;
     float hp, mhp, mp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange;
-    List<int> skills;
     SkillStat currentSkill;
     int currentSkillNum;
     Transform skillRange;
     List<float> cooldown;
+    List<SkillStat> skillStats = new List<SkillStat> {null, null, null, null};
 
     void setStats(List<float> stats)
     {
@@ -46,7 +46,9 @@ public class Character : MonoBehaviour
     }
     void setSkills(List<int> skills)
     {
-        this.skills = skills;
+        for (int i=0; i<4; i++) {
+            skillStats[i] = (SkillStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Skills/Skill_" + skills[i] + ".asset", typeof(SkillStat));
+        }
     }
     private void Start()
     {
@@ -79,7 +81,7 @@ public class Character : MonoBehaviour
         }*/
     }
     public bool isSkillValid(int skill) {
-        if (cooldown[skill] > 0) {
+        if (cooldown[skill] > 0 || mp < skillStats[skill].getStats()[0]) {
             return false;
         }
         return true;
@@ -87,7 +89,7 @@ public class Character : MonoBehaviour
     public void showSkillRange(int skill)
     {
         Debug.Log(skill);
-        currentSkill = (SkillStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Skills/Skill_" + skills[skill] + ".asset", typeof(SkillStat));
+        currentSkill = skillStats[skill];
         Transform transform = GetComponent<Transform>();
         switch(currentSkill.getSkillType())
         {
@@ -129,5 +131,16 @@ public class Character : MonoBehaviour
         }
         anime.SetBool("isMoving", Controller.isMoving == true);
         anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
+    }
+
+    public float getRatio(Gauge.Type type) {
+        switch(type) {
+            case Gauge.Type.health:
+                return hp/mhp;
+            case Gauge.Type.mana:
+                return mp/mmp;
+            default:
+                return 1;
+        }
     }
 }
