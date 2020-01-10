@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 361350999a3474d4e8527cbe309620d1, type: 3}
-  m_Name: Hero_0
+  m_Name: Unit_0
   m_EditorClassIdentifier: 
   serialNum: 0
-  name: "\uAC04\uB2EC\uD504"
-  mhp: 300
-  mmp: 400
-  atk: 10
-  def: 1
-  hpRegen: 1
-  mpRegen: 2
-  atkRange: 8
-  sightRange: 9
+  name: Warrior
+  mhp: 100
+  mmp: 0
+  atk: 12
+  def: 0
+  hpRegen: 2
+  mpRegen: 0
+  atkRange: 1
+  sightRange: 8
   attackDelay: 60
-  skills: 00000000010000000200000003000000
-  attackType: 1
+  skills: 
+  attackType: 0

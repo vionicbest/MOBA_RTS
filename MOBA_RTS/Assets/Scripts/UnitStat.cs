@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New HeroData", menuName = "create new hero data", order = 2)]
+[CreateAssetMenu(fileName = "New UnitData", menuName = "Create new unit data", order = 2)]
 
-public class HeroStat : ScriptableObject
+public class UnitStat : ScriptableObject
 {
+    enum AttackType {
+        melee,
+        range,
+    }
     [SerializeField]
     private int serialNum;
     [SerializeField]
     private string name;
     [SerializeField]
-    private float mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange;
+    private float mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange, attackDelay;
     [SerializeField]
     private List<int> skills;
     [SerializeField]
-    private Sprite hero, heroleft, heroright;
+    private AttackType attackType;
 
     public string getName()
     {
@@ -29,10 +33,5 @@ public class HeroStat : ScriptableObject
     public List<int> getSkills()
     {
         return skills;
-    }
-    public List<Sprite> getSprites()
-    {
-        List<Sprite> sprites = new List<Sprite> { hero, heroleft, heroright };
-        return sprites;
     }
 }

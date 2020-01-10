@@ -18,8 +18,8 @@ MonoBehaviour:
   mp: 20
   cooldown: 4
   damage: 30
-  duration: 240
-  speed: 0.1
+  duration: 120
+  speed: 0.3
   skillPrefab: {fileID: 6303840854966208609, guid: ed4a4e767d58cd8469d62173fca95c97,
     type: 3}
   skillRangePrefab: {fileID: 7884669626102194661, guid: 807f9a6d7e5856e41bc22740b41a78cb,

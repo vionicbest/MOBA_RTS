@@ -7,7 +7,8 @@ public class Controller : MonoBehaviour
     Camera mainCamera;
     [SerializeField]
     float scrollSpeed, maxZoom, minZoom;
-
+    [SerializeField]
+    bool debug;
     Vector3 nextMovePosition;
     Character hero;
     public static Character.CharacterDirection direction;
@@ -73,6 +74,11 @@ public class Controller : MonoBehaviour
             nextCameraZ = Mathf.Max(nextCameraZ, minZoom);
             mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, nextCameraZ);
         }
-        hero.changeSprite(direction);
+
+        // 디버그 용도
+        if (debug) {
+            if (Input.GetKey(KeyCode.Z)) {
+            }
+        }
     }
 }

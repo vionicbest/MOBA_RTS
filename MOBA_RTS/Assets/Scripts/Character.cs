@@ -15,9 +15,11 @@ public class Character : MonoBehaviour
     string characterCode;
     [SerializeField]
     float speed;
+    [SerializeField]
+    bool isHero;
     Sprite sprite, spriteLeft, spriteRight, hpBar, mpBar;
     public Animator anime; 
-    HeroStat stat;
+    UnitStat stat;
     float hp, mhp, mp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange;
     SkillStat currentSkill;
     int currentSkillNum;
@@ -38,12 +40,6 @@ public class Character : MonoBehaviour
         atkRange = stats[6];
         sightRange = stats[7];
     }
-    void setSprites(List<Sprite> sprites)
-    {
-        sprite = sprites[0];
-        spriteLeft = sprites[1];
-        spriteRight = sprites[2];
-    }
     void setSkills(List<int> skills)
     {
         for (int i=0; i<4; i++) {
@@ -52,12 +48,15 @@ public class Character : MonoBehaviour
     }
     private void Start()
     {
-        stat = (HeroStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Heroes/Hero_" + characterCode + ".asset", typeof(HeroStat));
+        if (isHero) {
+            stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Heroes/Hero_" + characterCode + ".asset", typeof(UnitStat));
+            setSkills(stat.getSkills());
+            cooldown = new List<float> {0.0f, 0.0f, 0.0f, 0.0f};
+        }
+        else {
+            stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Units/Unit_" + characterCode + ".asset", typeof(UnitStat));
+        }
         setStats(stat.getStats());
-        setSprites(stat.getSprites());
-        setSkills(stat.getSkills());
-
-        cooldown = new List<float> {0.0f, 0.0f, 0.0f, 0.0f};
     }
 
     public float finalSpeed()
