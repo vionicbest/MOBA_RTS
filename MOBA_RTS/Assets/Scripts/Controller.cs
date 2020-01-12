@@ -70,7 +70,7 @@ public class Controller : MonoBehaviour
         if (Input.GetKey (KeyCode.Mouse1))
         {
             Vector3 mousePos = Input.mousePosition;
-            nextMovePosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+            nextMovePosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z - 1));
         }
         // 캐릭터 방향 관련된 업데이트
         if (hero.transform.position != nextMovePosition)
