@@ -9,6 +9,7 @@ public class SkillStat : ScriptableObject
     public enum SkillType
     {
         Projectile,
+        TargetedProjectile,
     };
     [SerializeField]
     private string name;

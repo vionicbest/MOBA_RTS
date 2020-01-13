@@ -105,7 +105,12 @@ public class Character : MonoBehaviour
         {
             case SkillStat.SkillType.Projectile:
                 skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
-                skillRange.GetComponent<SkillRange>().init(this);
+                skillRange.GetComponent<SkillRange>().init(this, false);
+                currentSkillNum = skill;
+                break;
+            case SkillStat.SkillType.TargetedProjectile:
+                skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                skillRange.GetComponent<SkillRange>().init(this, false);
                 currentSkillNum = skill;
                 break;
         }
@@ -121,7 +126,14 @@ public class Character : MonoBehaviour
         {
             case SkillStat.SkillType.Projectile:
                 var projectile = Instantiate(currentSkill.getPrefabs()[0], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
-                projectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill);
+                projectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill, null);
+                mp -= currentSkill.getStats()[0];
+                cooldown[currentSkillNum] += currentSkill.getStats()[1];
+                currentSkillNum = -1;
+                break;
+            case SkillStat.SkillType.TargetedProjectile:
+                var targetedProjectile = Instantiate(currentSkill.getPrefabs()[0], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                targetedProjectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill, null);
                 mp -= currentSkill.getStats()[0];
                 cooldown[currentSkillNum] += currentSkill.getStats()[1];
                 currentSkillNum = -1;
