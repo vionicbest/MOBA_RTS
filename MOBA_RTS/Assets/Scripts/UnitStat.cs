@@ -16,7 +16,7 @@ public class UnitStat : ScriptableObject
     [SerializeField]
     private string name;
     [SerializeField]
-    private float mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange, attackDelay;
+    private float mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange, attackDelay, speed;
     [SerializeField]
     private List<int> skills;
     [SerializeField]
@@ -32,7 +32,7 @@ public class UnitStat : ScriptableObject
     }
     public List<float> GetStats()
     {
-        List<float> stats = new List<float> { mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange };
+        List<float> stats = new List<float> { mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange, speed };
         return stats;
     }
     public List<int> GetSkills()
