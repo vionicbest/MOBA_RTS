@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     CharacterType type;
     Sprite sprite, spriteLeft, spriteRight, hpBar, mpBar;
-    public Animator anime; 
+    Animator anime;
     UnitStat stat;
     float hp, mhp, mp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange, speed;
     SkillStat currentSkill;
@@ -81,6 +81,7 @@ public class Character : MonoBehaviour
         }
         setStats(stat.GetStats());
         setSprite(stat.GetSprite());
+        anime = stat.GetAnime();
         nextMovePosition = transform.position;
         direction = CharacterDirection.Right;
     }
