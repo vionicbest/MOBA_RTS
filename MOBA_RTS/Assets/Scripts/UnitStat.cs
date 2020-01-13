@@ -24,6 +24,8 @@ public class UnitStat : ScriptableObject
     [SerializeField]
     private Sprite unit;
     [SerializeField]
+    private Animator anime;
+    [SerializeField]
     private bool haveAnime;
 
     public string GetName()
@@ -41,6 +43,10 @@ public class UnitStat : ScriptableObject
     }
     public Sprite GetSprite() {
         return unit;
+    }
+    public Animator GetAnime()
+    {
+        return anime;
     }
     public bool IsHaveAnime()
     {
