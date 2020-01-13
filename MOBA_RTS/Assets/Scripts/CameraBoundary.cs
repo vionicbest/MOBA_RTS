@@ -20,7 +20,7 @@ public class CameraBoundary : MonoBehaviour
         controller = GameObject.Find("Controller");
     }
 
-    public void controlCamera(bool isTurnOn)
+    public void ControlCamera(bool isTurnOn)
     {
         controller.GetComponent<Controller>().MoveCamera(boundary, isTurnOn);
     }

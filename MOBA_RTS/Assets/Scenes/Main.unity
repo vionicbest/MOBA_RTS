@@ -299,7 +299,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 46044646}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -314,7 +314,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 46044646}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4272,7 +4272,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1198243476}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4287,7 +4287,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1198243476}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4639,7 +4639,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1348702304}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4654,7 +4654,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1348702304}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5805,9 +5805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterCode: 0
-  speed: 5
   type: 0
-  anime: {fileID: 1904979357}
 --- !u!212 &1904979355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5996,7 +5994,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1943501542}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6011,7 +6009,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1943501542}
-          m_MethodName: controlCamera
+          m_MethodName: ControlCamera
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
