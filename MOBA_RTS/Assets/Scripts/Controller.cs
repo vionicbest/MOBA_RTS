@@ -11,11 +11,14 @@ public class Controller : MonoBehaviour
     bool debug;
     [SerializeField]
     Transform unit;
+    [SerializeField]
+    GameObject map;
     Vector3 nextMovePosition;
     Character hero;
     public static Character.CharacterDirection direction;
     public static bool isMoving;
     bool isSkillReady;
+    bool isMapOpen;
 
     bool cameraUp;
     bool cameraDown;
@@ -57,14 +60,18 @@ public class Controller : MonoBehaviour
             hero.activateSkill();
             isSkillReady = false;
         }
-        if (Input.GetKeyDown (KeyCode.Q) && !isSkillReady && hero.isSkillValid(0))
+        if (Input.GetKeyDown (KeyCode.Q))
         {
-            hero.showSkillRange(0);
-            isSkillReady = true;
-        }
-        if (Input.GetKeyUp (KeyCode.Q) && isSkillReady) {
-            hero.deleteSkillRange();
-            isSkillReady = false;
+            if (isSkillReady)
+            {
+                hero.deleteSkillRange();
+                isSkillReady = false;
+            }
+            else if (hero.isSkillValid(0))
+            {
+                hero.showSkillRange(0);
+                isSkillReady = true;
+            }
         }
         //이동 관련된 업데이트
         if (Input.GetKey (KeyCode.Mouse1))
@@ -110,7 +117,12 @@ public class Controller : MonoBehaviour
             nextCameraZ = Mathf.Max(nextCameraZ, minZoom);
             mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, nextCameraZ);
         }
-
+        // 전술지도 관련 업데이트
+        if (Input.GetKeyDown (KeyCode.Tab))
+        {
+            isMapOpen = !isMapOpen;
+            map.SetActive(isMapOpen);
+        }
         // 디버그 용도
         if (debug) {
             if (Input.GetKey(KeyCode.Z)) {

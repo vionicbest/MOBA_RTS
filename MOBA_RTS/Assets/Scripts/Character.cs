@@ -67,7 +67,7 @@ public class Character : MonoBehaviour
         {
             case CharacterType.Hero:
                 stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Heroes/Hero_" + characterCode + ".asset", typeof(UnitStat));
-                setSkills(stat.getSkills());
+                setSkills(stat.GetSkills());
                 cooldown = new List<float> { 0.0f, 0.0f, 0.0f, 0.0f };
                 break;
             case CharacterType.Unit:
@@ -77,8 +77,8 @@ public class Character : MonoBehaviour
                 stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Buildings/Building_" + characterCode + ".asset", typeof(UnitStat));
                 break;
         }
-        setStats(stat.getStats());
-        setSprite(stat.getSprite());
+        setStats(stat.GetStats());
+        setSprite(stat.GetSprite());
     }
 
     public float finalSpeed()
@@ -137,8 +137,11 @@ public class Character : MonoBehaviour
         if (mp < mmp) {
             mp += mpRegen;
         }
-        anime.SetBool("isMoving", Controller.isMoving == true);
-        anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
+        if (stat.IsHaveAnime())
+        {
+            anime.SetBool("isMoving", Controller.isMoving == true);
+            anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
+        }
     }
 
     public float getRatio(Gauge.Type type) {
@@ -152,10 +155,13 @@ public class Character : MonoBehaviour
         }
     }
     void OnTriggerEnter(Collider col) {
-        float damage = col.gameObject.GetComponent<Skill>().GetDamage();
-        getDamage(damage);
-        Destroy(col.gameObject);
-        Debug.Log(hp);
+        if (col.gameObject.GetComponent<Skill>())
+        {
+            float damage = col.gameObject.GetComponent<Skill>().GetDamage();
+            getDamage(damage);
+            Destroy(col.gameObject);
+            Debug.Log(hp);
+        }
     }
 
     void getDamage(float damage) {

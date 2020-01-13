@@ -23,21 +23,27 @@ public class UnitStat : ScriptableObject
     private AttackType attackType;
     [SerializeField]
     private Sprite unit;
+    [SerializeField]
+    private bool haveAnime;
 
-    public string getName()
+    public string GetName()
     {
         return name;
     }
-    public List<float> getStats()
+    public List<float> GetStats()
     {
         List<float> stats = new List<float> { mhp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange };
         return stats;
     }
-    public List<int> getSkills()
+    public List<int> GetSkills()
     {
         return skills;
     }
-    public Sprite getSprite() {
+    public Sprite GetSprite() {
         return unit;
+    }
+    public bool IsHaveAnime()
+    {
+        return haveAnime;
     }
 }

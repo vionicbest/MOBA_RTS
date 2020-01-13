@@ -26,3 +26,4 @@ MonoBehaviour:
   skills: 
   attackType: 0
   unit: {fileID: 21300000, guid: cb20bdd17ef98a74eb9c7b8bfd688e75, type: 3}
+  haveAnime: 0
