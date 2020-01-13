@@ -9,6 +9,7 @@ public class UnitStat : ScriptableObject
     enum AttackType {
         melee,
         range,
+        cannot,
     }
     [SerializeField]
     private int serialNum;

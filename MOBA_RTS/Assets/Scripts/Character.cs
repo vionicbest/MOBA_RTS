@@ -11,12 +11,20 @@ public class Character : MonoBehaviour
         Left,
         Right,
     };
+
+    public enum CharacterType
+    {
+        Hero,
+        Unit,
+        Building,
+    };
+
     [SerializeField]
     string characterCode;
     [SerializeField]
     float speed;
     [SerializeField]
-    bool isHero;
+    CharacterType type;
     Sprite sprite, spriteLeft, spriteRight, hpBar, mpBar;
     public Animator anime; 
     UnitStat stat;
@@ -49,18 +57,25 @@ public class Character : MonoBehaviour
             skillStats[i] = (SkillStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Skills/Skill_" + skills[i] + ".asset", typeof(SkillStat));
         }
     }
-    public void init(string code) {
+    public void init(string code, CharacterType type) {
         characterCode = code;
+        this.type = type;
     }
     private void Start()
     {
-        if (isHero) {
-            stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Heroes/Hero_" + characterCode + ".asset", typeof(UnitStat));
-            setSkills(stat.getSkills());
-            cooldown = new List<float> {0.0f, 0.0f, 0.0f, 0.0f};
-        }
-        else {
-            stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Units/Unit_" + characterCode + ".asset", typeof(UnitStat));
+        switch(type)
+        {
+            case CharacterType.Hero:
+                stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Heroes/Hero_" + characterCode + ".asset", typeof(UnitStat));
+                setSkills(stat.getSkills());
+                cooldown = new List<float> { 0.0f, 0.0f, 0.0f, 0.0f };
+                break;
+            case CharacterType.Unit:
+                stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Units/Unit_" + characterCode + ".asset", typeof(UnitStat));
+                break;
+            case CharacterType.Building:
+                stat = (UnitStat)AssetDatabase.LoadAssetAtPath("Assets/Datas/Buildings/Building_" + characterCode + ".asset", typeof(UnitStat));
+                break;
         }
         setStats(stat.getStats());
         setSprite(stat.getSprite());
@@ -112,7 +127,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if(isHero) {
+        if(type == CharacterType.Hero) {
             for (int i=0; i<4; i++) {
                 if (cooldown[i] > 0) {
                     cooldown[i]--;

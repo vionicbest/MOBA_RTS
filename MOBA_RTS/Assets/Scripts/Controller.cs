@@ -114,7 +114,13 @@ public class Controller : MonoBehaviour
         // 디버그 용도
         if (debug) {
             if (Input.GetKey(KeyCode.Z)) {
-                unit.gameObject.GetComponent<Character>().init("0");
+                unit.gameObject.GetComponent<Character>().init("0", Character.CharacterType.Unit);
+                var mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var spawnedUnit = Instantiate(unit, new Vector3(mp.x, mp.y, -1), new Quaternion(0, 0, 0, 0));
+            }
+            if (Input.GetKey(KeyCode.X))
+            {
+                unit.gameObject.GetComponent<Character>().init("0", Character.CharacterType.Building);
                 var mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var spawnedUnit = Instantiate(unit, new Vector3(mp.x, mp.y, -1), new Quaternion(0, 0, 0, 0));
             }
