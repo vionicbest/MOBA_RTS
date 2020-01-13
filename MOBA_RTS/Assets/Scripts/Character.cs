@@ -81,7 +81,8 @@ public class Character : MonoBehaviour
         }
         setStats(stat.GetStats());
         setSprite(stat.GetSprite());
-        anime = stat.GetAnime();
+        anime = gameObject.GetComponent<Animator>();
+        anime.runtimeAnimatorController = stat.GetAnime();
         nextMovePosition = transform.position;
         direction = CharacterDirection.Right;
     }

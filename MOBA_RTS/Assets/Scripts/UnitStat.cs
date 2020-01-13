@@ -24,7 +24,7 @@ public class UnitStat : ScriptableObject
     [SerializeField]
     private Sprite unit;
     [SerializeField]
-    private Animator anime;
+    private RuntimeAnimatorController anime;
     [SerializeField]
     private bool haveAnime;
 
@@ -44,7 +44,7 @@ public class UnitStat : ScriptableObject
     public Sprite GetSprite() {
         return unit;
     }
-    public Animator GetAnime()
+    public RuntimeAnimatorController GetAnime()
     {
         return anime;
     }
