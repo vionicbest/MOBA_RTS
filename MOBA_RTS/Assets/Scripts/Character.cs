@@ -34,7 +34,10 @@ public class Character : MonoBehaviour
     Transform skillRange;
     List<float> cooldown;
     List<SkillStat> skillStats = new List<SkillStat> {null, null, null, null};
+    Vector3 nextMovePosition = new Vector3(0, 0, 0);
+    bool isMoving;
 
+    CharacterDirection direction;
     void setStats(List<float> stats)
     {
         hp = stats[0];
@@ -79,6 +82,8 @@ public class Character : MonoBehaviour
         }
         setStats(stat.GetStats());
         setSprite(stat.GetSprite());
+        nextMovePosition = transform.position;
+        direction = CharacterDirection.Right;
     }
 
     public float finalSpeed()
@@ -127,7 +132,8 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if(type == CharacterType.Hero) {
+        isMoving = transform.position != nextMovePosition;
+        if (type == CharacterType.Hero) {
             for (int i=0; i<4; i++) {
                 if (cooldown[i] > 0) {
                     cooldown[i]--;
@@ -139,8 +145,22 @@ public class Character : MonoBehaviour
         }
         if (stat.IsHaveAnime())
         {
-            anime.SetBool("isMoving", Controller.isMoving == true);
-            anime.SetBool("isRight", Controller.direction == CharacterDirection.Right);
+            anime.SetBool("isMoving", isMoving == true);
+            anime.SetBool("isRight", direction == CharacterDirection.Right);
+        }
+
+        if (transform.position != nextMovePosition)
+        {
+            var moveSpeed = finalSpeed() * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, nextMovePosition, moveSpeed);
+            if (transform.position.x > nextMovePosition.x)
+            {
+                direction = Character.CharacterDirection.Left;
+            }
+            if (transform.position.x < nextMovePosition.x)
+            {
+                direction = Character.CharacterDirection.Right;
+            }
         }
     }
 
@@ -169,5 +189,10 @@ public class Character : MonoBehaviour
         if (hp <= 0) {
             Destroy(this.gameObject);
         }
+    }
+
+    public void move(Vector3 nextPosition)
+    {
+        nextMovePosition = nextPosition;
     }
 }
