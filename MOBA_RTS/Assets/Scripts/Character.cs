@@ -91,31 +91,31 @@ public class Character : MonoBehaviour
         return speed;
     }
 
-    public bool isSkillValid(int skill) {
+    public bool IsSkillValid(int skill) {
         if (cooldown[skill] > 0 || mp < skillStats[skill].getStats()[0]) {
             return false;
         }
         return true;
     }
-    public void showSkillRange(int skill)
+    public void ShowSkillRange(int skill)
     {
         currentSkill = skillStats[skill];
         Transform transform = GetComponent<Transform>();
         switch(currentSkill.getSkillType())
         {
             case SkillStat.SkillType.Projectile:
-                skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+                skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
                 skillRange.GetComponent<SkillRange>().init(this, false);
                 currentSkillNum = skill;
                 break;
             case SkillStat.SkillType.TargetedProjectile:
-                skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
-                skillRange.GetComponent<SkillRange>().init(this, false);
+                skillRange = Instantiate(currentSkill.getPrefabs()[1], new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
+                skillRange.GetComponent<SkillRange>().init(this, true);
                 currentSkillNum = skill;
                 break;
         }
     }
-    public void deleteSkillRange()
+    public void DeleteSkillRange()
     {
         Destroy(skillRange.gameObject);
         skillRange = null;
@@ -139,12 +139,12 @@ public class Character : MonoBehaviour
                 currentSkillNum = -1;
                 break;
         }
-        deleteSkillRange();
+        DeleteSkillRange();
     }
 
     private void Update()
     {
-        Debug.Log(stat.GetName() + " " + transform.position + " " + nextMovePosition);
+        //Debug.Log(stat.GetName() + " " + transform.position + " " + nextMovePosition);
         isMoving = transform.position != nextMovePosition;
         if (type == CharacterType.Hero) {
             for (int i=0; i<4; i++) {
@@ -168,11 +168,11 @@ public class Character : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, nextMovePosition, moveSpeed);
             if (transform.position.x > nextMovePosition.x)
             {
-                direction = Character.CharacterDirection.Left;
+                direction = CharacterDirection.Left;
             }
             if (transform.position.x < nextMovePosition.x)
             {
-                direction = Character.CharacterDirection.Right;
+                direction = CharacterDirection.Right;
             }
         }
     }

@@ -60,12 +60,25 @@ public class Controller : MonoBehaviour
         {
             if (isSkillReady)
             {
-                hero.deleteSkillRange();
+                hero.DeleteSkillRange();
                 isSkillReady = false;
             }
-            else if (hero.isSkillValid(0))
+            else if (hero.IsSkillValid(0))
             {
-                hero.showSkillRange(0);
+                hero.ShowSkillRange(0);
+                isSkillReady = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (isSkillReady)
+            {
+                hero.DeleteSkillRange();
+                isSkillReady = false;
+            }
+            else if (hero.IsSkillValid(1))
+            {
+                hero.ShowSkillRange(1);
                 isSkillReady = true;
             }
         }
