@@ -22,19 +22,17 @@ public class Character : MonoBehaviour
     [SerializeField]
     string characterCode;
     [SerializeField]
-    float speed;
-    [SerializeField]
     CharacterType type;
     Sprite sprite, spriteLeft, spriteRight, hpBar, mpBar;
     public Animator anime; 
     UnitStat stat;
-    float hp, mhp, mp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange;
+    float hp, mhp, mp, mmp, atk, def, hpRegen, mpRegen, atkRange, sightRange, speed;
     SkillStat currentSkill;
     int currentSkillNum;
     Transform skillRange;
     List<float> cooldown;
     List<SkillStat> skillStats = new List<SkillStat> {null, null, null, null};
-    Vector3 nextMovePosition = new Vector3(0, 0, 0);
+    Vector3 nextMovePosition = new Vector3(0, 0, -1);
     bool isMoving;
 
     CharacterDirection direction;
@@ -50,6 +48,7 @@ public class Character : MonoBehaviour
         mpRegen = stats[5];
         atkRange = stats[6];
         sightRange = stats[7];
+        speed = stats[8];
     }
     void setSprite(Sprite sprite) {
         GetComponent<SpriteRenderer>().sprite = sprite;
@@ -132,6 +131,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(stat.GetName() + " " + transform.position + " " + nextMovePosition);
         isMoving = transform.position != nextMovePosition;
         if (type == CharacterType.Hero) {
             for (int i=0; i<4; i++) {

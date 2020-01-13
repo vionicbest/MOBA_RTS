@@ -21,6 +21,8 @@ public class Controller : MonoBehaviour
     bool cameraDown;
     bool cameraLeft;
     bool cameraRight;
+
+    Transform temp;
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -105,17 +107,23 @@ public class Controller : MonoBehaviour
         }
         // 디버그 용도
         if (debug) {
-            if (Input.GetKey(KeyCode.Z)) {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                if (temp)
+                {
+                    temp.GetComponent<Character>().move(temp.position + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
+                }
                 unit.gameObject.GetComponent<Character>().init("0", Character.CharacterType.Unit);
                 var mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var spawnedUnit = Instantiate(unit, new Vector3(mp.x, mp.y, -1), new Quaternion(0, 0, 0, 0));
+                temp = spawnedUnit;
             }
-            if (Input.GetKey(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 unit.gameObject.GetComponent<Character>().init("0", Character.CharacterType.Building);
                 var mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var spawnedUnit = Instantiate(unit, new Vector3(mp.x, mp.y, -1), new Quaternion(0, 0, 0, 0));
-                //spawnedUnit.GetComponent<Character>.
+                
             }
         }
     }
