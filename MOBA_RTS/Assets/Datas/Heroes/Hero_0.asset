@@ -27,5 +27,5 @@ MonoBehaviour:
   skills: 00000000010000000200000003000000
   attackType: 1
   unit: {fileID: 21300000, guid: 0e59bcd503932734db91b0ad9c97951b, type: 3}
-  anime: {fileID: 0}
+  anime: {fileID: 9100000, guid: 9a382fa841398ee488c68843262fb767, type: 2}
   haveAnime: 1
