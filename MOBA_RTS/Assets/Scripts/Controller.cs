@@ -13,10 +13,7 @@ public class Controller : MonoBehaviour
     Transform unit;
     [SerializeField]
     GameObject map;
-    Vector3 nextMovePosition;
     Character hero;
-    public static Character.CharacterDirection direction;
-    public static bool isMoving;
     bool isSkillReady;
     bool isMapOpen;
 
@@ -28,8 +25,6 @@ public class Controller : MonoBehaviour
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         hero = GameObject.Find("Character").GetComponent<Character>();
-        direction = Character.CharacterDirection.Right;
-        isMoving = false;
         isSkillReady = false;
     }
     public void MoveCamera(CameraBoundary.Boundary boundary, bool isTurnOn)
@@ -53,7 +48,6 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isMoving = hero.transform.position != nextMovePosition;
         //스킬 관련된 업데이트
         if (Input.GetKey(KeyCode.Mouse0) && isSkillReady)
         {
@@ -77,21 +71,7 @@ public class Controller : MonoBehaviour
         if (Input.GetKey (KeyCode.Mouse1))
         {
             Vector3 mousePos = Input.mousePosition;
-            nextMovePosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z - 1));
-        }
-        // 캐릭터 방향 관련된 업데이트
-        if (hero.transform.position != nextMovePosition)
-        {
-            float speed = hero.finalSpeed() * Time.deltaTime;
-            hero.transform.position = Vector3.MoveTowards(hero.transform.position, nextMovePosition, speed);
-            if (hero.transform.position.x > nextMovePosition.x)
-            {
-                direction = Character.CharacterDirection.Left;
-            }
-            if (hero.transform.position.x < nextMovePosition.x)
-            {
-                direction = Character.CharacterDirection.Right;
-            }
+            hero.move(mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z - 1)));
         }
         // 카메라 관련된 업데이트
         if (cameraUp)
@@ -135,6 +115,7 @@ public class Controller : MonoBehaviour
                 unit.gameObject.GetComponent<Character>().init("0", Character.CharacterType.Building);
                 var mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var spawnedUnit = Instantiate(unit, new Vector3(mp.x, mp.y, -1), new Quaternion(0, 0, 0, 0));
+                //spawnedUnit.GetComponent<Character>.
             }
         }
     }
