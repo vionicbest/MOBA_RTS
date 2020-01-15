@@ -145,7 +145,6 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(stat.GetName() + " " + transform.position + " " + nextMovePosition);
         isMoving = transform.position != nextMovePosition;
         if (type == CharacterType.Hero) {
             for (int i=0; i<4; i++) {
