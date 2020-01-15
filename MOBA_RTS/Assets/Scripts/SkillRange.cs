@@ -6,6 +6,7 @@ public class SkillRange : MonoBehaviour
 {
     bool isTarget;
     Character hero;
+    GameObject target;
 
     public void init(Character hero, bool isTarget) {
         this.hero = hero;
@@ -51,7 +52,18 @@ public class SkillRange : MonoBehaviour
         }
         else
         {
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //먼저 계산을 위해 마우스와 게임 오브젝트의 현재의 좌표를 임시로 저장합니다.
+            Vector3 mPosition = Input.mousePosition; //마우스 좌표 저장
+            Vector3 oPosition = transform.position; //게임 오브젝트 좌표 저장
+
+            //카메라가 앞면에서 뒤로 보고 있기 때문에, 마우스 position의 z축 정보에 
+            //게임 오브젝트와 카메라와의 z축의 차이를 입력시켜줘야 합니다.
+            mPosition.z = oPosition.z - Camera.main.transform.position.z;
+
+            //화면의 픽셀별로 변화되는 마우스의 좌표를 유니티의 좌표로 변화해 줘야 합니다.
+            //그래야, 위치를 찾아갈 수 있겠습니다.
+            Vector3 target = Camera.main.ScreenToWorldPoint(mPosition);
+            transform.position = new Vector3(target.x, target.y, -1);
         }
 	}
     void Update() {
@@ -101,8 +113,17 @@ public class SkillRange : MonoBehaviour
             //화면의 픽셀별로 변화되는 마우스의 좌표를 유니티의 좌표로 변화해 줘야 합니다.
             //그래야, 위치를 찾아갈 수 있겠습니다.
             Vector3 target = Camera.main.ScreenToWorldPoint(mPosition);
-            transform.position = target;
-            Debug.Log(target);
+            transform.position = new Vector3(target.x, target.y, -1);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        target = other.gameObject;
+    }
+
+    public GameObject getTarget()
+    {
+        return target;
     }
 }

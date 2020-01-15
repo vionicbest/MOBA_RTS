@@ -134,7 +134,7 @@ public class Character : MonoBehaviour
                 break;
             case SkillStat.SkillType.TargetedProjectile:
                 var targetedProjectile = Instantiate(currentSkill.getPrefabs()[0], new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
-                targetedProjectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill, null);
+                targetedProjectile.GetComponent<Skill>().init(skillRange.GetComponent<SkillRange>().direction(), currentSkill, skillRange.GetComponent<SkillRange>().getTarget().transform);
                 mp -= currentSkill.getStats()[0];
                 cooldown[currentSkillNum] += currentSkill.getStats()[1];
                 currentSkillNum = -1;

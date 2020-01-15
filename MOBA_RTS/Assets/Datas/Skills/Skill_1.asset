@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f8dda7384fa9ef4e83e39e726c99db1, type: 3}
-  m_Name: New SkillData
+  m_Name: Skill_1
   m_EditorClassIdentifier: 
-  name: 
-  skillType: 0
-  num: 0
-  mp: 0
-  cooldown: 0
-  damage: 0
+  name: "\uB9E4\uC9C1 \uBBF8\uC0AC\uC77C"
+  skillType: 1
+  num: 3
+  mp: 40
+  cooldown: 60
+  damage: 5
   duration: 0
-  speed: 0
-  skillPrefab: {fileID: 0}
-  skillRangePrefab: {fileID: 0}
-  isTarget: 0
+  speed: 0.1
+  skillPrefab: {fileID: 768049054384439067, guid: 38f62c15466518243bc425e38c3ab8be,
+    type: 3}
+  skillRangePrefab: {fileID: 7881948125397840157, guid: 763196f62e590e64a9dacc450232879b,
+    type: 3}
+  isTarget: 1
