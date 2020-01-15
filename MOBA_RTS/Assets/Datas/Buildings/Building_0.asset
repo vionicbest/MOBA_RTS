@@ -23,7 +23,9 @@ MonoBehaviour:
   atkRange: 0
   sightRange: 8
   attackDelay: 0
+  speed: 0
   skills: 
   attackType: 2
-  unit: {fileID: 21300000, guid: 805aad66cd2ba874b92f83d9d12be6db, type: 3}
+  unit: {fileID: 21300000, guid: 79d84ad8c83a1b544bb5d90251ea8b2d, type: 3}
+  anime: {fileID: 0}
   haveAnime: 0
