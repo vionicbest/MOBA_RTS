@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
     Transform unit;
     [SerializeField]
     GameObject map;
+    [SerializeField]
+    BuildMenu buildMenu;
     Character hero;
     bool isSkillReady;
     bool isMapOpen;
@@ -121,7 +123,12 @@ public class Controller : MonoBehaviour
         // 건물 건설 관련 업데이트
         if (Input.GetKeyDown (KeyCode.B))
         {
-            
+            buildMenu.ShowBuildMenu(BuildMenu.Status.basic);
+        }
+        
+        if (Input.GetKeyDown (KeyCode.V))
+        {
+            buildMenu.ShowBuildMenu(BuildMenu.Status.advanced);
         }
         // 디버그 용도
         if (debug) {

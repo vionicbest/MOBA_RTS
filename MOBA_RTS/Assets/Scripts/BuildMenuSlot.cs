@@ -13,7 +13,6 @@ public class BuildMenuSlot : MonoBehaviour
         nextStatus = status;
     }
     public void OnClickSlot() {
-        Debug.Log("?");
         buildMenu.ShowBuildMenu(nextStatus);
     }
 }
