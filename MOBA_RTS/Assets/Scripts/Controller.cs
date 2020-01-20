@@ -118,6 +118,11 @@ public class Controller : MonoBehaviour
             isMapOpen = !isMapOpen;
             map.SetActive(isMapOpen);
         }
+        // 건물 건설 관련 업데이트
+        if (Input.GetKeyDown (KeyCode.B))
+        {
+            
+        }
         // 디버그 용도
         if (debug) {
             if (Input.GetKeyDown(KeyCode.Z))

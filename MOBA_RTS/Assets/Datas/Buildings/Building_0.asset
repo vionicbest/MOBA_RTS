@@ -24,6 +24,7 @@ MonoBehaviour:
   sightRange: 8
   attackDelay: 0
   speed: 0
+  cost: 200
   skills: 
   attackType: 2
   unit: {fileID: 21300000, guid: 79d84ad8c83a1b544bb5d90251ea8b2d, type: 3}
