@@ -12,6 +12,7 @@ public class BuildMenu : MonoBehaviour
         basic,
         advanced,
         normal,
+        none,
     }
 
     Status status;
@@ -39,20 +40,22 @@ public class BuildMenu : MonoBehaviour
             case Status.normal:
                 for (int i=0; i<9; i++) {
                     BuildSlot[i].GetComponent<Image>().sprite = normal[i];
-                    BuildSlot[i].GetComponent<BuildMenuSlot>().setStatus(normalClick[i]);
+                    BuildSlot[i].GetComponent<BuildMenuSlot>().SetStatus(normalClick[i]);
                 }
                 break;
             case Status.basic:
                 for (int i=0; i<9; i++) {
                     BuildSlot[i].GetComponent<Image>().sprite = basicBuild[i];
-                    BuildSlot[i].GetComponent<BuildMenuSlot>().setStatus(basicClick[i]);
+                    BuildSlot[i].GetComponent<BuildMenuSlot>().SetStatus(basicClick[i]);
                 }
                 break;
             case Status.advanced:
                 for (int i=0; i<9; i++) {
                     BuildSlot[i].GetComponent<Image>().sprite = advancedBuild[i];
-                    BuildSlot[i].GetComponent<BuildMenuSlot>().setStatus(advancedClick[i]);
+                    BuildSlot[i].GetComponent<BuildMenuSlot>().SetStatus(advancedClick[i]);
                 }
+                break;
+            case Status.none:
                 break;
         }
     }
