@@ -3527,6 +3527,7 @@ MonoBehaviour:
   debug: 1
   unit: {fileID: 5762505971735756534, guid: 5f41fbefe731e044f975bc60c09c3dc4, type: 3}
   map: {fileID: 17975149}
+  research: {fileID: 1517404060}
   buildMenu: {fileID: 2100697745}
 --- !u!4 &403517362
 Transform:
@@ -5386,7 +5387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3e4da42c0e012f141baf837a8739a74d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f160d3820eead974a9849bab682e5a2e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5981,6 +5982,7 @@ RectTransform:
   - {fileID: 244228593}
   - {fileID: 1733342932}
   - {fileID: 17975150}
+  - {fileID: 1517404061}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6315,6 +6317,92 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!1 &1517404060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517404061}
+  - component: {fileID: 1517404064}
+  - component: {fileID: 1517404063}
+  - component: {fileID: 1517404062}
+  m_Layer: 5
+  m_Name: Research
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1517404061
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517404060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1410622026}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1280}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1517404062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517404060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a39875abe146db45a719a6e3dfed085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1517404063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517404060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1517404064
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517404060}
+  m_CullTransparentMesh: 0
 --- !u!1 &1553341076
 GameObject:
   m_ObjectHideFlags: 0
@@ -6451,7 +6539,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2e1705ac347447941949b0a60a6c6caf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5822374ad0b3a4942b369fce13533060, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7866,8 +7954,8 @@ MonoBehaviour:
   - {fileID: 856394873}
   - {fileID: 317600924}
   normal:
-  - {fileID: 21300000, guid: 2e1705ac347447941949b0a60a6c6caf, type: 3}
-  - {fileID: 21300000, guid: 3e4da42c0e012f141baf837a8739a74d, type: 3}
+  - {fileID: 21300000, guid: 5822374ad0b3a4942b369fce13533060, type: 3}
+  - {fileID: 21300000, guid: f160d3820eead974a9849bab682e5a2e, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

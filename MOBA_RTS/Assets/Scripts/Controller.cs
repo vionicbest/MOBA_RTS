@@ -12,12 +12,13 @@ public class Controller : MonoBehaviour
     [SerializeField]
     Transform unit;
     [SerializeField]
-    GameObject map;
+    GameObject map, research;
     [SerializeField]
     BuildMenu buildMenu;
     Character hero;
     bool isSkillReady;
     bool isMapOpen;
+    bool isResearchOpen;
 
     bool cameraUp;
     bool cameraDown;
@@ -30,6 +31,8 @@ public class Controller : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         hero = GameObject.Find("Character").GetComponent<Character>();
         isSkillReady = false;
+        isResearchOpen = false;
+        isMapOpen = false;
     }
     public void MoveCamera(CameraBoundary.Boundary boundary, bool isTurnOn)
     {
@@ -129,6 +132,14 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.V))
         {
             buildMenu.ShowBuildMenu(BuildMenu.Status.advanced);
+        }
+
+        // 연구 관련 업데이트
+
+        if (Input.GetKeyDown (KeyCode.F1))
+        {
+            isResearchOpen = !isResearchOpen;
+            research.SetActive(isResearchOpen);
         }
         // 디버그 용도
         if (debug) {
